@@ -1,0 +1,58 @@
+<!--Login Page-->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>login</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+<header class="header">
+    <section class="flex">
+      <a href="#" class="logo" >Institute Management</a>
+   </section>
+</header>   
+
+<div class="side-bar">
+
+</div>
+
+<section class="form-container">
+
+   <form method="post"  action="{% url "login" %}"enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>Login</h3>
+      {% if messages %}
+      {% for message in messages %}
+         <script>
+            alert("{{message}}");
+         </script>
+      {% endfor %}
+      {% endif %}
+
+      <p>Email</p>
+      <input type="email" name="email" placeholder="Your Email Address" class="box"><br>
+      <p>Password</p>
+      <input type="password" name="password" placeholder="Your Password" class="box"><br>
+      <input type="submit" value="Login" name="submit" class="btn"><br>
+      <center><a href="fpassword_email" style="font-size:15px;">Forgot Password</a></center>
+   </form>
+      
+</section>
+
+<!-- custom js file link  -->
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!--Teacher detail Page for perticular-->
+
+{% extends 'teacherheader.html' %}
+{% block content %}
+{% load static %}
+<section class="playlist-details">
+    <center><h1 class="heading">Your Details</h1></center>
+    <div class="row">
+        <table border="1">
+                <tr>
+                    <th><h3 class="text-center" style="margin-right:20px;padding-left:20px;">Your Name</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px;padding-left:20px;">Mobile</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Birth Date</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px;">Date Of Joining</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Salary</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Address</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Picture</h3></th>
+                </tr>
+            <body>
+               
+                <br><tr>
+                    <td class="text-center" style="padding-top:20px;"><h3>{{ tid.firstname }} {{ tid.lastname }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;"><h3>{{ tid.mobile }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ tid.birth_date }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ tid.date_of_joining }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ tid.salary }}</h3></td>                
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ tid.address }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><img src="/media/{{ tid.picture }}" height="130px" width="150px"></td>
+                </tr>
+                
+            </body>
+        </table>
+    </div>
+ </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!--Home Page For Principle-->
+
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+</html>
+<body>
+<section class="home-grid">
+
+   <h1 class="heading">Principle Manages</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <h3 class="title">Students</h3>
+         <a href="{% url 'viewstudent' %}" class="inline-btn">view</a>
+      </div>
+
+      <div class="box">
+         <h3 class="title">Teachers</h3>
+         <a href="{% url 'viewteacher' %}" class="inline-btn">view</a>
+      </div>
+
+      <div class="box">
+         <h3 class="title">Clubs</h3>
+         <a href="#" class="inline-btn">view</a>
+      </div>
+
+      <div class="box">
+         <h3 class="title">Books</h3>
+         <a href="#" class="inline-btn">view</a>
+      </div>
+   </div>
+</section>
+
+</body>
+</html>
+{% endblock %}

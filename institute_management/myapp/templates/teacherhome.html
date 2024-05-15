@@ -1,0 +1,24 @@
+<!--Teacher Home Page-->
+
+{% extends 'teacherheader.html' %}
+{% block content %}
+{% load static %}
+</html>
+<body>
+<section class="home-grid">
+
+   <h1 class="heading">Teacher Profile</h1>
+
+   <center><h1 style="font-size:25px;">Hello  {{tid.firstname}}{{tid.lastname}}  !!</h1></center>
+
+   <div class="row">
+      <div class="image">
+         <center><img src="{% static 'images/about-img.svg' %}" alt="" height="600px;"></center>
+      </div>
+   </div>
+
+</section>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,193 @@
+<!-- Add Student Page -->
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<section class="form-container">
+    {% if messages %}
+    {% for message in messages %}
+       <script>
+       alert("{{message}}");
+       </script>                  
+    {% endfor %}
+    {% endif %}
+    <center>
+        <h1 style="font-size:30px;" class="heading">Add Student</h1><br><br>
+        <form id="addStudentForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Email:</p><br>
+            <input type="text" id="email" name="email" required class="box"><br><br>
+            <span id="emailError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>First Name:</p><br>
+            <input type="text" id="fname" name="fname" required class="box"><br><br>
+            <span id="fnameError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>Last Name:</p><br>
+            <input type="text" id="lname" name="lname" class="box"><br><br>
+            <span id="lnameError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>Mobile No:</p><br>
+            <input type="text" id="mobile" name="mobile" class="box" required><br><br>
+            <span id="mobileError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>Birth Date:</p><br>
+            <input type="date" id="bdate" name="bdate" class="box"><br><br>
+            <span id="bdateError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>Roll Number:</p><br>
+            <input type="text" id="rno" name="rno" class="box"><br><br>
+            <span id="rnoError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>Address:</p><br>
+            <input type="text" id="add" name="add" class="box"><br><br>
+            <span id="addError" class="error" style="font-size:15px;"></span><br><br>
+
+            <p>Fees:</p><br>
+            <input type="number" id="fees" name="fees" class="box"><br><br>
+            <span id="feesError" class="error" style="font-size:15px;"></span><br><br>
+
+            <input type="submit" value="Add Student" class="btn"><br>
+        </form>
+    </center>
+</section>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+<!-- Validations -->
+<script>
+    function validateForm() {
+        var email = document.getElementById("email").value;
+        var fname = document.getElementById("fname").value;
+        var lname = document.getElementById("lname").value;
+        var mobile = document.getElementById("mobile").value;
+        var bdate = document.getElementById("bdate").value;
+        var rno = document.getElementById("rno").value;
+        var add = document.getElementById("add").value;
+        var fees = document.getElementById("fees").value;
+
+        var emailError = document.getElementById("emailError");
+        var fnameError = document.getElementById("fnameError");
+        var lnameError = document.getElementById("lnameError");
+        var mobileError = document.getElementById("mobileError");
+        var bdateError = document.getElementById("bdateError");
+        var rnoError = document.getElementById("rnoError");
+        var addError = document.getElementById("addError");
+        var feesError = document.getElementById("feesError");
+
+        var isValid = true;
+
+        // Validate email
+        if (email === "") {
+            emailError.textContent = "Email is required";
+            isValid = false;
+        } else {
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Please enter a valid email address";
+                isValid = false;
+            } else {
+                emailError.textContent = "";
+            }
+        }
+
+        // Validate Firstname
+        if (fname === "") {
+            fnameError.textContent = "Firstname is required";
+            isValid = false;
+        } else {
+            fnameError.textContent = "";
+        }
+
+        // Validate Lastname
+        if (lname === "") {
+            lnameError.textContent = "Lastname is required";
+            isValid = false;
+        } else {
+            lnameError.textContent = "";
+        }
+
+        // Validate Mobile Number
+        if (mobile === "") {
+            mobileError.textContent = "Mobile number is required";
+            isValid = false;
+        } else {
+            var mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                mobileError.textContent = "Mobile number must be 10 digits";
+                isValid = false;
+            } else {
+                mobileError.textContent = "";
+            }
+        }
+
+        // Validate Birthdate
+        if (bdate === "") {
+            bdateError.textContent = "Birthdate is required";
+            isValid = false;
+        } else {
+            bdateError.textContent = "";
+        }
+
+        // Validate Roll no
+        if (rno === "") {
+            rnoError.textContent = "Roll Number is required";
+            isValid = false;
+        } else {
+            rnoError.textContent = "";
+        }
+
+        // Validate Address
+        if (add === "") {
+            addError.textContent = "Address is required";
+            isValid = false;
+        } else {
+            addError.textContent = "";
+        }
+
+        // Validate Fees
+        if (fees === "") {
+            feesError.textContent = "Fees is required";
+            isValid = false;
+        } else {
+            feesError.textContent = "";
+        }
+
+        return isValid;
+    }
+
+    // Ajax Using---
+    document.getElementById('addStudentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        if (!validateForm()) {
+            return false;
+        }
+
+        var formData = new FormData(this);
+
+        fetch("{% url 'addstudent' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Student added successfully!');
+                // Clear form fields
+                document.getElementById('addStudentForm').reset();
+                // Clear error messages
+                document.querySelectorAll('.error').forEach(function(error) {
+                    error.textContent = '';
+                });
+            } 
+        })
+    });
+</script>
+{% endblock %}
+

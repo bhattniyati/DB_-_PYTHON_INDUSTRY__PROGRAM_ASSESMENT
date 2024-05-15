@@ -1,0 +1,32 @@
+<!--Profile Page for Principle-->
+
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+
+<section class="form-container">
+   {% if messages %}
+   {% for message in messages %}
+      <script>
+      alert("{{message}}");
+      </script>                  
+   {% endfor %}
+   {% endif %}
+   <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h3>Update Profile</h3>
+      <p>Email</p>
+      <input type="email" name="email" maxlength="50" class="box" value="{{user.email}}" disabled>
+      <p>First Name</p>
+      <input type="text" name="fname" maxlength="50" class="box" value="{{pid.firstname}}">
+      <p>Last Name</p>
+      <input type="text" name="lname" maxlength="50" class="box" value="{{pid.lastname}}">
+      <p>Mobile No</p>
+      <input type="number" name="mobile" maxlength="50" class="box" value="{{pid.mobile}}">
+      <p>Profile Picture</p>
+      <input type="file" name="picture" maxlength="50" class="box">
+      <input type="submit" value="Update Profile" name="submit" class="btn">
+   </form>
+
+</section>
+{% endblock %}

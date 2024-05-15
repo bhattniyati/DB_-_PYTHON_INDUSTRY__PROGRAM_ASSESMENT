@@ -1,0 +1,76 @@
+<!--Header For Principle-->
+
+{% load static %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Institute Management</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   {% comment %} <style>
+      .error {
+          color: red;
+      }
+      .success {
+          color: green;
+      }
+  </style> {% endcomment %}
+</head>
+<header class="header">
+   
+    <section class="flex">
+      
+      <a href="{% url 'home' %}" class="logo" style="font-size:21px;">Institute Management</a>
+
+      {% if request.session.email %}
+      <h1><a href="{% url 'logout' %}" style="color:black;font-size:20px; margin-left: 650px;">Logout</a></h1>
+      <h1><a href="{% url 'changepassword' %}" style="color:black; font-size:20px;">Changepassword</a></h1>
+      {% else %}  
+      <h1><a href="{% url 'login' %}" style="color:black; font-size:20px;">Login</a></h1>
+      {% endif %}
+ 
+    </section>
+ 
+ </header>   
+ <div class="side-bar">
+
+    <div id="close-btn">
+       <i class="fas fa-times"></i>
+    </div>
+ 
+   
+    <div class="profile">
+       <img src="/media/{{pid.picture}}" class="image" alt="">
+       <h3 class="name">{{pid.firstname}} {{pid.lastname}}</h3>
+       <p class="role">{{user.role}}</p>
+       <a href="{% url 'profile' %}" class="btn">profile</a>
+    </div>
+   
+ 
+    <nav class="navbar">
+      <a href="{% url 'home' %}"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
+      <a href="{% url 'student' %}"><i class="fas fa-user-graduate"></i><span>Student</span></a>
+      <a href="{% url 'teacher' %}"><i class="fas fa-chalkboard-teacher"></i><span>Teacher</span></a>
+      <a href="#"><i class="fa-solid fa-c"></i></i><span>Clubs</span></a>
+      <a href="#"><i class="fa-solid fa-book"></i><span>Books</span></a>
+    </nav>
+ 
+ </div>
+
+      {% block content %}
+		{% endblock %}
+
+ <footer class="footer">
+
+    &copy; copyright @ 2022 by <span>mr. web designer</span> | all rights reserved!
+ 
+ </footer>
+ 
+ <!-- custom js file link  -->
+ <script src="{% static 'js/script.js' %}"></script>
+   

@@ -1,0 +1,41 @@
+<!--Student Page-->
+
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<html>
+<body>
+<section class="about">
+
+   <div class="box-container">
+
+      <div class="box">
+         <div>
+         <center>
+            <h3>Add Student</h3>
+            <a href="{% url 'addstudent' %}" class="inline-btn">Add</a>
+            </center>
+         </div>
+      </div>
+
+      <div class="box">
+         <div>
+            <center>
+            <h3>View All Student</h3>
+            <a href="{% url 'viewstudent' %}" class="inline-btn">View</a>
+            </center>
+         </div>
+      </div>
+
+   </div>
+   
+   <div class="row">
+      <div class="image">
+         <center><img src="{% static 'images/about-img.svg' %}" alt="" height="600px;"></center>
+      </div>
+   </div>
+</section> 
+
+</body>
+</html>
+{% endblock %}

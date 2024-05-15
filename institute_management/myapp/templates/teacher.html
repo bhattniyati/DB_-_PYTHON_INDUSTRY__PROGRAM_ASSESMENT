@@ -1,0 +1,40 @@
+<!--Teacher Page-->
+
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<html>
+<body>
+<section class="about">
+
+   <div class="box-container">
+
+      <div class="box">
+         <div>
+         <center>
+            <h3>Add Teacher</h3>
+            <a href="{% url 'addteacher' %}" class="inline-btn">Add</a>
+            </center>
+         </div>
+      </div>
+
+      <div class="box">
+         <div>
+            <center>
+            <h3>View All Teachers</h3>
+            <a href="{% url 'viewteacher' %}" class="inline-btn">View</a>
+            </center>
+         </div>
+      </div>
+      
+      <div class="row">
+         <div class="image">
+            <img src="{% static 'images/about-img.svg' %}" alt="">
+         </div>
+      </div>
+      
+</section> 
+
+</body>
+</html>
+{% endblock %}

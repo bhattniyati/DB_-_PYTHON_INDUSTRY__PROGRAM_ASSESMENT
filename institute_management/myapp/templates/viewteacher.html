@@ -1,0 +1,39 @@
+<!--View All Teacher Details Page-->
+
+{% extends 'header.html' %}
+{% block content %}
+{% load static %}
+<section class="playlist-details">
+    <center><h1 class="heading">View All Teacher Details</h1></center>
+    <div class="row">
+        <table border="1">
+                <tr>
+                    <th><h3 class="text-center" style="margin-right:20px;">Teacher Name</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px;">Mobile</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Birth Date</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px;">Date Of Joining</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Salary</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Address</h3></th>
+                    <th><h3 class="text-center" style="margin-right:20px; padding-left:20px;">Picture</h3></th>
+                </tr>
+            <body>
+               {% for data in tid %}
+                <br><tr>
+                    <td class="text-center" style="padding-top:20px;"><h3>{{ data.firstname }} {{ data.lastname }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;"><h3>{{ data.mobile }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;"><h3>{{ data.birth_date }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ data.date_of_joining }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ data.salary }}</h3></td>                
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><h3>{{ data.address }}</h3></td>
+                    <td class="text-center" style="padding-top:20px;padding-left:20px;"><img src="/media/{{ data.picture }}" height="130px" width="150px"></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="text-center">No Students</td>
+                </tr>
+                {% endfor %}
+            </body>
+        </table>
+    </div>
+ </section>
+{% endblock %}
